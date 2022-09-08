@@ -13,7 +13,7 @@ public class PasswordStrengthMeter {
         boolean containsUpp = meetsContainingUppercaseCriteria(s);
         if(containsUpp) metCounts++;
 
-        if(metCounts == 1) return WEAK;
+        if(metCounts <= 1) return WEAK;
         if(metCounts == 2) return NORMAL;
         return STRONG;
     }
