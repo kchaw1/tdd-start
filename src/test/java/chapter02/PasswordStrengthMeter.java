@@ -5,23 +5,16 @@ import static chapter02.PasswordStrength.*;
 public class PasswordStrengthMeter {
     public PasswordStrength meter(String s) {
         if(s==null || s.isEmpty()) return INVALID;
+        int metCounts = 0;
         boolean lengthEnough = s.length() >= 8;
+        if(lengthEnough) metCounts++;
         boolean containsNum = meetsContainingNumberCriteria(s);
+        if(containsNum) metCounts++;
         boolean containsUpp = meetsContainingUppercaseCriteria(s);
-        if (lengthEnough && !containsNum && !containsUpp) {
-            return WEAK;
-        }
-        if (!lengthEnough && containsNum && !containsUpp) {
-            return WEAK;
-        }
-        if (!lengthEnough && !containsNum && containsUpp) {
-            return WEAK;
-        }
-        if (!lengthEnough) {
-            return NORMAL;
-        }
-        if(!containsNum) return NORMAL;
-        if(!containsUpp) return NORMAL;
+        if(containsUpp) metCounts++;
+
+        if(metCounts == 1) return WEAK;
+        if(metCounts == 2) return NORMAL;
         return STRONG;
     }
 
