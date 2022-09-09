@@ -17,23 +17,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class PasswordStrengthMeterTest {
 
-    private PasswordStrengthMeter meter = new PasswordStrengthMeter();
+    private final PasswordStrengthMeter meter = new PasswordStrengthMeter();
 
     private void assertStrength(String password, PasswordStrength expStr) {
         PasswordStrength result = meter.meter(password);
         assertEquals(expStr, result);
-    }
-
-    /**
-     * 내 개발
-     */
-    @Test
-    void meterSelf() {
-        PasswordStrength strength = MyPasswordStrengthMeter.validate("password");
-
-        assertEquals(WEAK, strength);
-        assertEquals(NORMAL, MyPasswordStrengthMeter.validate("password123"));
-        assertEquals(STRONG, MyPasswordStrengthMeter.validate("Password123"));
     }
 
     /**
