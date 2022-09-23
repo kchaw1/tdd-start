@@ -129,6 +129,11 @@ public class ExpiryDateCalculatorTest {
                 LocalDate.of(2020,1,28));
     }
 
+    @Test
+    void PayData가_없으면_IllegalArgumentException_예외발생() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new ExpiryDateCalculator(null));
+    }
+
     private void assertExpiryDate(PayData payData, LocalDate expectedExpiryDate) {
         ExpiryDateCalculator cal = new ExpiryDateCalculator(payData);
         LocalDate realExpiryDate = cal.calculateExpiryDate();
